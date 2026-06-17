@@ -6,6 +6,7 @@ export default function Leaderboard() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // API endpoint: https://$CODESPACE_NAME-8000.app.github.dev/api/leaderboard
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {

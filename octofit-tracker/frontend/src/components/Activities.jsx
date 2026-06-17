@@ -6,6 +6,7 @@ export default function Activities() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // API endpoint: https://$CODESPACE_NAME-8000.app.github.dev/api/activities
   useEffect(() => {
     const fetchActivities = async () => {
       try {

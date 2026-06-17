@@ -6,6 +6,7 @@ export default function Workouts() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // API endpoint: https://$CODESPACE_NAME-8000.app.github.dev/api/workouts
   useEffect(() => {
     const fetchWorkouts = async () => {
       try {

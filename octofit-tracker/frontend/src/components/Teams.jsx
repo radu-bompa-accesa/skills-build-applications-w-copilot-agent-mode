@@ -6,6 +6,7 @@ export default function Teams() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // API endpoint: https://$CODESPACE_NAME-8000.app.github.dev/api/teams
   useEffect(() => {
     const fetchTeams = async () => {
       try {
