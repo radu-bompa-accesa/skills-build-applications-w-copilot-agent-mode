@@ -2,29 +2,29 @@ import { Router, Request, Response } from 'express';
 
 const router = Router();
 
-// Get all users
+// Get all teams
 router.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'Get all users' });
+  res.json({ message: 'Get all teams' });
 });
 
-// Get user by ID
+// Get team by ID
 router.get('/:id', (req: Request, res: Response) => {
-  res.json({ message: `Get user ${req.params.id}` });
+  res.json({ message: `Get team ${req.params.id}` });
 });
 
-// Create a new user
+// Create a new team
 router.post('/', (req: Request, res: Response) => {
-  res.json({ message: 'Create a new user', body: req.body });
+  res.json({ message: 'Create a new team', body: req.body });
 });
 
-// Update user
+// Update team
 router.put('/:id', (req: Request, res: Response) => {
-  res.json({ message: `Update user ${req.params.id}`, body: req.body });
+  res.json({ message: `Update team ${req.params.id}`, body: req.body });
 });
 
-// Delete user
+// Delete team
 router.delete('/:id', (req: Request, res: Response) => {
-  res.json({ message: `Delete user ${req.params.id}` });
+  res.json({ message: `Delete team ${req.params.id}` });
 });
 
 export default router;

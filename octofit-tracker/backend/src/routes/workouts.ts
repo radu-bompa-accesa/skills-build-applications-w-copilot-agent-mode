@@ -1,88 +1,30 @@
-import express, { Router, Request, Response } from 'express';
-import { WorkoutService } from '../services/WorkoutService';
+import { Router, Request, Response } from 'express';
 
-const router: Router = express.Router();
-const workoutService = new WorkoutService();
+const router = Router();
 
-// GET all workouts for a user
-router.get('/user/:userId', async (req: Request, res: Response) => {
-  try {
-    const workouts = await workoutService.getWorkoutsByUserId(req.params.userId);
-    res.json({ success: true, data: workouts });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Unknown error' });
-  }
+// Get all workouts
+router.get('/', (req: Request, res: Response) => {
+  res.json({ message: 'Get all workouts' });
 });
 
-// GET workout by ID
-router.get('/:id', async (req: Request, res: Response) => {
-  try {
-    const workout = await workoutService.getWorkoutById(req.params.id);
-    if (!workout) {
-      res.status(404).json({ success: false, error: 'Workout not found' });
-      return;
-    }
-    res.json({ success: true, data: workout });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Unknown error' });
-  }
+// Get workout by ID
+router.get('/:id', (req: Request, res: Response) => {
+  res.json({ message: `Get workout ${req.params.id}` });
 });
 
-// CREATE new workout
-router.post('/', async (req: Request, res: Response) => {
-  try {
-    const workout = await workoutService.createWorkout(req.body);
-    res.status(201).json({ success: true, data: workout });
-  } catch (error) {
-    res.status(400).json({ success: false, error: error instanceof Error ? error.message : 'Unknown error' });
-  }
+// Create a new workout
+router.post('/', (req: Request, res: Response) => {
+  res.json({ message: 'Create a new workout', body: req.body });
 });
 
-// UPDATE workout
-router.put('/:id', async (req: Request, res: Response) => {
-  try {
-    const workout = await workoutService.updateWorkout(req.params.id, req.body);
-    if (!workout) {
-      res.status(404).json({ success: false, error: 'Workout not found' });
-      return;
-    }
-    res.json({ success: true, data: workout });
-  } catch (error) {
-    res.status(400).json({ success: false, error: error instanceof Error ? error.message : 'Unknown error' });
-  }
+// Update workout
+router.put('/:id', (req: Request, res: Response) => {
+  res.json({ message: `Update workout ${req.params.id}`, body: req.body });
 });
 
-// DELETE workout
-router.delete('/:id', async (req: Request, res: Response) => {
-  try {
-    const success = await workoutService.deleteWorkout(req.params.id);
-    if (!success) {
-      res.status(404).json({ success: false, error: 'Workout not found' });
-      return;
-    }
-    res.json({ success: true, message: 'Workout deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Unknown error' });
-  }
-});
-
-// GET workouts by date range
-router.get('/user/:userId/range', async (req: Request, res: Response) => {
-  try {
-    const { startDate, endDate } = req.query;
-    if (!startDate || !endDate) {
-      res.status(400).json({ success: false, error: 'startDate and endDate are required' });
-      return;
-    }
-    const workouts = await workoutService.getWorkoutsByDateRange(
-      req.params.userId,
-      new Date(startDate as string),
-      new Date(endDate as string)
-    );
-    res.json({ success: true, data: workouts });
-  } catch (error) {
-    res.status(500).json({ success: false, error: error instanceof Error ? error.message : 'Unknown error' });
-  }
+// Delete workout
+router.delete('/:id', (req: Request, res: Response) => {
+  res.json({ message: `Delete workout ${req.params.id}` });
 });
 
 export default router;
