@@ -33,16 +33,10 @@ const Activity = mongoose.model('Activity', activitySchema);
 const Workout = mongoose.model('Workout', workoutSchema);
 
 /**
- * Seed script for populating test data in octofit_db
+ * Seed test data in octofit_db database
  * 
- * This is a seed command that populates the octofit_db database with sample test data.
- * The seed command initializes the database with:
- * - 5 sample users with fitness tracking points
- * - 2 teams with members
- * - 5 different activity types (Running, Cycling, Weightlifting, Swimming, Yoga)
- * - 5 workout records with user and activity relationships
- * 
- * This seed command description helps initialize test data for the OctoFit Tracker application.
+ * Usage: npm run seed
+ * Description: Initializes the octofit_db database with sample test data including users, teams, activities, and workouts
  */
 const seedDatabase = async () => {
   try {
