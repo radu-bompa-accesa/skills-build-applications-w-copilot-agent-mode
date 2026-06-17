@@ -33,11 +33,13 @@ const Activity = mongoose.model('Activity', activitySchema);
 const Workout = mongoose.model('Workout', workoutSchema);
 
 /**
- * Seed script to populate test data
+ * Seed the octofit_db database with test data
  * 
- * This script populates the octofit_db database with sample test data.
- * It creates sample users, teams, activities, and workout records
- * to enable testing and development of the OctoFit Tracker application.
+ * This script seeds the octofit_db database with sample test data including:
+ * - 5 sample users with fitness tracking points
+ * - 2 teams with team members
+ * - 5 different activity types (Running, Cycling, Weightlifting, Swimming, Yoga)
+ * - 5 workout records with user and activity relationships
  */
 const seedDatabase = async () => {
   try {
