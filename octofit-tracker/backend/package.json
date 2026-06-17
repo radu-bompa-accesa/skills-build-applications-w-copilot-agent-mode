@@ -8,12 +8,15 @@
     "dev": "ts-node src/index.ts",
     "build": "tsc",
     "start": "node dist/index.js",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "seed": "ts-node src/scripts/seedDatabase.ts",
+    "test:api": "ts-node src/scripts/testAPI.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^1.6.0",
     "express": "^4.18.2",
     "mongoose": "^8.0.0"
   },
