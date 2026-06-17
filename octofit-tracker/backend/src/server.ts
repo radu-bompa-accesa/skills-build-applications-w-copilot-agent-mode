@@ -10,8 +10,21 @@ import workoutsRouter from './routes/workouts';
 const app: Express = express();
 const PORT = process.env.PORT || 8000;
 
+// Configure CORS for Codespaces and localhost
+const getCorsOrigin = (): string => {
+  // Support Codespaces environment: https://$CODESPACE_NAME-8000.app.github.dev
+  if (process.env.CODESPACE_NAME) {
+    return `https://${process.env.CODESPACE_NAME}-8000.app.github.dev`;
+  }
+  // Fallback to localhost for local development
+  return 'http://localhost:8000';
+};
+
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: getCorsOrigin(),
+  credentials: true,
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -31,6 +44,8 @@ app.get('/api/health', (req: Request, res: Response) => {
 const startServer = async () => {
   try {
     await connectDatabase();
+    const corsOrigin = getCorsOrigin();
+    console.log(`CORS enabled for: ${corsOrigin}`);
     app.listen(PORT, () => {
       console.log(`Server is running on port ${PORT}`);
     });
